@@ -1,10 +1,9 @@
-package app;
+package app1;
 
 import java.util.Scanner;
 
 /**
- * Erick Humerto Rojas Teran. 
- * 1 - Junio - 2025
+ * Erick Humerto Rojas Teran. 1 - Junio - 2025
  */
 public class Main {
 

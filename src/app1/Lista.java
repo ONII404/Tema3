@@ -1,8 +1,7 @@
-package app;
+package app1;
 
 /**
- * Erick Humerto Rojas Teran. 
- * 1 - Junio - 2025
+ * Erick Humerto Rojas Teran. 1 - Junio - 2025
  */
 public class Lista {
 
@@ -15,7 +14,7 @@ public class Lista {
     public Lista insertHeadList(int numControl, int calificacion, String correo) {
         Nodo nodoNuevo;
         nodoNuevo = new Nodo(numControl, calificacion, correo);
-        nodoNuevo.setEnlace(nodoEstudiante);
+        nodoNuevo.enlace = nodoEstudiante;
         nodoEstudiante = nodoNuevo;
         return this;
     }
@@ -28,11 +27,11 @@ public class Lista {
 
         while (n != null) {
             System.out.println(
-                    "Numero de control: " + n.getNumControl()
-                    + " Calificacion: " + n.getCalificacion()
-                    + " Correo: " + n.getCorreoElectronico()
+                    "Numero de control: " + n.numControl
+                    + " Calificacion: " + n.calificacion
+                    + " Correo: " + n.correoElectronico
                     + "\n-----------------------------");
-            n = n.getEnlace();
+            n = n.enlace;
             k++;
         }
     }
@@ -42,17 +41,17 @@ public class Lista {
         boolean encontrado = false;
 
         while (index != null) {
-            if (index.getNumControl() == numControl) {
+            if (index.numControl == numControl) {
                 System.out.println("=== Dato encontrado ===");
                 System.out.println(
-                        "Número de control: " + index.getNumControl() + "\n"
-                        + "Calificación: " + index.getCalificacion() + "\n"
-                        + "Correo electrónico: " + index.getCorreoElectronico() + "\n"
+                        "Número de control: " + index.numControl + "\n"
+                        + "Calificación: " + index.calificacion + "\n"
+                        + "Correo electrónico: " + index.correoElectronico + "\n"
                         + "-----------------------------");
                 encontrado = true;
                 break; // Salir del bucle una vez encontrado
             }
-            index = index.getEnlace();
+            index = index.enlace;
         }
 
         if (!encontrado) {
@@ -63,7 +62,7 @@ public class Lista {
 
     public void eliminarPrimero() {
         if (nodoEstudiante != null) {
-            nodoEstudiante = nodoEstudiante.getEnlace();
+            nodoEstudiante = nodoEstudiante.enlace;
             System.out.println("Primer elemento eliminado correctamente.");
         } else {
             System.out.println("La lista está vacía. No hay elementos para eliminar.");
@@ -77,21 +76,21 @@ public class Lista {
         }
 
         // Caso especial: si el nodo a eliminar es el primero
-        if (nodoEstudiante.getNumControl() == numControl) {
-            nodoEstudiante = nodoEstudiante.getEnlace();
+        if (nodoEstudiante.numControl == numControl) {
+            nodoEstudiante = nodoEstudiante.enlace;
             System.out.println("Elemento eliminado correctamente.");
             return;
         }
 
         // Buscar el nodo a eliminar
         Nodo actual = nodoEstudiante;
-        while (actual.getEnlace() != null && actual.getEnlace().getNumControl() != numControl) {
-            actual = actual.getEnlace();
+        while (actual.enlace != null && actual.enlace.numControl != numControl) {
+            actual = actual.enlace;
         }
 
         // Si se encontró el nodo, eliminarlo
-        if (actual.getEnlace() != null) {
-            actual.setEnlace(actual.getEnlace().getEnlace());
+        if (actual.enlace != null) {
+            actual = actual.enlace.enlace;
             System.out.println("Elemento eliminado correctamente.");
         } else {
             System.out.println("No se encontró el número de control en la lista.");
